@@ -17,13 +17,27 @@ def collate_heros(inspect_heros, all_heros):
     temp_list = inspect_heros[:]
     for item in all_heros:
         if len(temp_list) > 0:
-            for elem in temp_list:         # Реализация без структуры try-except.
-                if elem == item['name']:
-                    if item['powerstats']['intelligence'] > max_intelligence:
-                        max_intelligence= item['powerstats']['intelligence']
-                        superhero_name = elem
-                    temp_list.remove(elem)
-                    break
+
+            #     Реализация через конструкцию try-except.
+            try:
+                i = temp_list.index(item['name'])    # К сожалению, у списков нет метода .find()
+            except ValueError:
+                pass    # Пропускает этого "супергероя", т.к. его нет среди интересующих нас.
+            else:
+                if item['powerstats']['intelligence'] > max_intelligence:
+                    max_intelligence= item['powerstats']['intelligence']
+                    superhero_name = temp_list[i]
+                temp_list.pop(i)
+
+            # #     Реализация без конструкции try-except.
+            # for elem in temp_list:
+            #     if elem == item['name']:
+            #         if item['powerstats']['intelligence'] > max_intelligence:
+            #             max_intelligence= item['powerstats']['intelligence']
+            #             superhero_name = elem
+            #         temp_list.remove(elem)
+            #         break
+
         else:
             break
     return superhero_name, max_intelligence
