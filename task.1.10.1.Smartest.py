@@ -11,6 +11,13 @@ def input_data():
     return inspect_heros, my_response.json()
 
 
+def find_in_list(check_list, finded):
+    for elem in check_list:
+        if elem == finded:
+            return True
+    return False
+
+
 def collate_heros(inspect_heros, all_heros):
     max_intelligence = 0
     superhero_name = ""
@@ -18,7 +25,7 @@ def collate_heros(inspect_heros, all_heros):
     for item in all_heros:
         if len(temp_list) > 0:
 
-            #     Реализация через конструкцию try-except.
+            #     1. Реализация через конструкцию try-except.
             try:
                 i = temp_list.index(item['name'])    # К сожалению, у списков нет метода .find()
             except ValueError:
@@ -29,7 +36,7 @@ def collate_heros(inspect_heros, all_heros):
                     superhero_name = temp_list[i]
                 temp_list.pop(i)
 
-            # #     Реализация без конструкции try-except.
+            # #     2. Реализация без конструкции try-except.
             # for elem in temp_list:
             #     if elem == item['name']:
             #         if item['powerstats']['intelligence'] > max_intelligence:
@@ -37,6 +44,13 @@ def collate_heros(inspect_heros, all_heros):
             #             superhero_name = elem
             #         temp_list.remove(elem)
             #         break
+            
+            # #     3. Ещё одна реализация с пользовательской функцией find_in_list().
+            # if find_in_list(temp_list, item['name']):
+            #     if item['powerstats']['intelligence'] > max_intelligence:
+            #         max_intelligence= item['powerstats']['intelligence']
+            #         superhero_name = item['name']
+            #     temp_list.remove(item['name'])
 
         else:
             break
