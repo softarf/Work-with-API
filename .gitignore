@@ -76,8 +76,20 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-# Сами Блокоты, в том числе
+# И сами Блокоты, в том числе
 *.ipynb
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Папки с виртуальными средами для домашних работ
+home_work_*/
+
+# Папки с лекционными тестами
+lecture_test*/
 
 # IPython
 profile_default/
@@ -111,7 +123,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-home_work_*/
 
 # Spyder project settings
 .spyderproject
@@ -130,6 +141,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# Выяснить позже, для чего эта папка
-.idea/
